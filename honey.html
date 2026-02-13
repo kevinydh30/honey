@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 For You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .heart {
+            font-size: 4rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        p {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .message {
+            font-size: 1.3rem;
+            color: #ffe0e6;
+            font-style: italic;
+            margin-top: 40px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .photo {
+            margin: 30px auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            animation: fadeInUp 1.1s ease-out;
+            border: 4px solid white;
+        }
+
+        /* Floating hearts animation */
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.7;
+            animation: float 6s ease-in infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .stars {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="floating-heart" style="left: 10%; animation-delay: 0s;">💕</div>
+    <div class="floating-heart" style="left: 20%; animation-delay: 2s;">💕</div>
+    <div class="floating-heart" style="left: 30%; animation-delay: 4s;">💕</div>
+    <div class="floating-heart" style="left: 40%; animation-delay: 1s;">💕</div>
+    <div class="floating-heart" style="left: 50%; animation-delay: 3s;">💕</div>
+    <div class="floating-heart" style="left: 60%; animation-delay: 5s;">💕</div>
+    <div class="floating-heart" style="left: 70%; animation-delay: 2.5s;">💕</div>
+    <div class="floating-heart" style="left: 80%; animation-delay: 4.5s;">💕</div>
+    <div class="floating-heart" style="left: 90%; animation-delay: 1.5s;">💕</div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="heart">💕</div>
+        <img src="pict.jpeg" alt="Our Photo" class="photo">
+        <h1>I Love You</h1>
+        <p>Honey</p>
+        <div class="message">
+            
+        </div>
+    </div>
+
+    <script>
+        // Create random stars
+        function createStars() {
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'stars';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(star);
+            }
+        }
+
+        // Create hearts on button click
+        function createHearts() {
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = '💕';
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = '100%';
+                heart.style.fontSize = Math.random() * 1 + 1.5 + 'rem';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = 'float 4s ease-in forwards';
+                heart.style.animationDelay = Math.random() * 0.3 + 's';
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', createStars);
+    </script>
+</body>
+</html>
